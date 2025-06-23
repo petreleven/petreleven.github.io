@@ -99,8 +99,9 @@
                 </div>
                 <div class="hidden md:flex space-x-6">
                     <a href="#features" class="hover:text-blue-400 transition">Features</a>
+                    <a href="#contact-terms" class="hover:text-blue-400 transition">Contact</a>
+                      <a href="#contact-terms" class="hover:text-blue-400 transition">Terms</a>
                     <a href="#about" class="hover:text-blue-400 transition">About</a>
-                    <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
                     <a href="#notify" class="hover:text-blue-400 transition">Get Notified</a>
                 </div>
             </div>
@@ -400,6 +401,79 @@
         </div>
     </section>
 
+    <!--terms-->
+    <section id="contact-terms" class="py-20 bg-gradient-to-b from-gray-900/30 to-gray-900/50">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                Contact & <span class="text-blue-400">Terms</span>
+            </h2>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                Connect with us or review our policies to ensure a smooth and fair gaming experience
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Contact -->
+            <div class="feature-card glass-card rounded-2xl p-8 transition-all duration-300">
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 glow-effect">
+                    <i class="fas fa-envelope text-white text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Contact Us</h3>
+                <p class="text-gray-400 leading-relaxed mb-4">
+                    Need help or have feedback? Our team is ready to assist you.
+                </p>
+                <a href="mailto:support@example.com" class="text-blue-400 hover:underline">petreleven@proton.me</a>
+            </div>
+
+            <!-- Fair Use Policy -->
+            <div class="feature-card glass-card rounded-2xl p-8 transition-all duration-300">
+                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-6 glow-effect">
+                    <i class="fas fa-balance-scale text-white text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Fair Use Policy</h3>
+                <p class="text-gray-400 leading-relaxed">
+                    Ensure resources are shared fairly — excessive usage may lead to limits.
+                </p>
+            </div>
+
+            <!-- Refund Policy -->
+            <div class="feature-card glass-card rounded-2xl p-8 transition-all duration-300">
+                <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center mb-6 glow-effect">
+                    <i class="fas fa-undo-alt text-white text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Refund Policy</h3>
+                <p class="text-gray-400 leading-relaxed">
+                    Refunds are available within 7 days for unused services, subject to review.
+                </p>
+            </div>
+
+            <!-- Server Uptime Commitment -->
+            <div class="feature-card glass-card rounded-2xl p-8 transition-all duration-300">
+                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 glow-effect">
+                    <i class="fas fa-server text-white text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">99.9% Uptime</h3>
+                <p class="text-gray-400 leading-relaxed">
+                    We will strive to keep your servers online and stable around the clock.
+                </p>
+            </div>
+
+            <!-- Mod and Content Policy -->
+            <div class="feature-card glass-card rounded-2xl p-8 transition-all duration-300">
+                <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 glow-effect">
+                    <i class="fas fa-puzzle-piece text-white text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Mod & Content Policy</h3>
+                <p class="text-gray-400 leading-relaxed">
+                    Only legal and non-malicious mods and content are allowed on our platform.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
     <!-- Testimonials/Social Proof Section -->
     <section class="py-20 bg-gradient-to-b from-gray-900/50 to-gray-800/50">
         <div class="container mx-auto px-6">
@@ -476,4 +550,157 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Notification Modal -->
+    <div id="notifyModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl p-8 max-w-md w-full transform transition-all">
+            <div class="text-center mb-6">
+                <i class="fas fa-rocket text-5xl text-blue-400 mb-4"></i>
+                <h3 class="text-2xl font-bold mb-2">Get Early Access</h3>
+                <p class="text-gray-400">Be the first to know when we launch!</p>
+            </div>
+            
+            <form class="space-y-4" onsubmit="handleNotifySubmit(event)">
+                <div>
+                    <input type="email" placeholder="Enter your email" required
+                           class="w-full p-4 bg-gray-800/80 border border-gray-600 rounded-xl focus:outline-none focus:border-blue-500 text-white placeholder-gray-400">
+                </div>
+                <div>
+                    <select class="w-full p-4 bg-gray-800/80 border border-gray-600 rounded-xl focus:outline-none focus:border-blue-500 text-white">
+                        <option value="">Favorite Game (Optional)</option>
+                        <option value="valheim">Valheim</option>
+                        <option value="minecraft">Minecraft</option>
+                        <option value="rust">Rust</option>
+                        <option value="ark">ARK: Survival Evolved</option>
+                        <option value="7days">7 Days to Die</option>
+                        <option value="cs2">Counter-Strike 2</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div>
+                    <select class="w-full p-4 bg-gray-800/80 border border-gray-600 rounded-xl focus:outline-none focus:border-blue-500 text-white">
+                        <option value="">Interested Plan (Optional)</option>
+                        <option value="starter">Viking Starter - $4.99/mo</option>
+                        <option value="warrior">Viking Warrior - $9.99/mo</option>
+                        <option value="jarl">Viking Jarl - $19.99/mo</option>
+                        <option value="custom">Custom Enterprise</option>
+                    </select>
+                </div>
+                <div class="flex gap-3">
+                    <button type="button" onclick="hideNotifyForm()" 
+                            class="flex-1 py-3 px-6 border border-gray-600 rounded-xl hover:bg-gray-800/50 transition">
+                        Cancel
+                    </button>
+                    <button type="submit" 
+                            class="flex-1 py-3 px-6 bg-gradient-to-r from-green-500 to-green-600 rounded-xl font-bold transition hover:from-green-600 hover:to-green-700">
+                        Join Waitlist
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <i class="fas fa-cube text-blue-400 text-xl"></i>
+                    <span class="text-xl font-bold">BlockForge</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-discord text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="text-center mt-8 text-gray-400">
+                <p>&copy; 2025 BlockForge. The future of game server hosting.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            // Set launch date (30 days from now as example)
+            const launchDate = new Date();
+            launchDate.setDate(launchDate.getDate() + 30);
+            
+            const now = new Date().getTime();
+            const distance = launchDate.getTime() - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Modal functions
+        function showNotifyForm() {
+            document.getElementById('notifyModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function hideNotifyForm() {
+            document.getElementById('notifyModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function handleNotifySubmit(event) {
+            event.preventDefault();
+            // Here you would handle the form submission to your backend/email service
+            // For demo purposes, we'll show a success message
+            const formData = new FormData(event.target);
+            const email = formData.get('email') || event.target.querySelector('input[type="email"]').value;
+            
+            // Simulate API call
+            setTimeout(() => {
+                alert(`Thanks for joining our waitlist! We'll notify ${email} when BlockForge launches.`);
+                hideNotifyForm();
+                
+                // Optional: Update the waitlist counter
+                const counter = document.querySelector('.text-green-400:contains("1000+")');
+                if (counter) {
+                    counter.textContent = '1001+';
+                }
+            }, 500);
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('notifyModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideNotifyForm();
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
