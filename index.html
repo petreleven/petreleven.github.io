@@ -1,617 +1,400 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KuaZone</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlockForge - Premium Game Server Hosting Coming Soon</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#59c255",
-              secondary: "#1e2e55",
-              accent: "#4ade80",
-            },
-            animation: {
-              float: "float 6s ease-in-out infinite",
-              "bounce-slow": "bounce 3s infinite",
-              "pulse-slow": "pulse 4s infinite",
-            },
-          },
-        },
-      };
-    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0px);
+        body {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
-        50% {
-          transform: translateY(-20px);
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-      }
-
-      .code-animation {
-        animation: typing 4s steps(20) infinite;
-      }
-
-      @keyframes typing {
-        0% {
-          width: 0;
+        
+        .glow-effect {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
         }
-        50% {
-          width: 100%;
+        
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite alternate;
         }
-        100% {
-          width: 0;
+        
+        @keyframes pulseGlow {
+            from { box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); }
+            to { box-shadow: 0 0 40px rgba(34, 197, 94, 0.6); }
         }
-      }
-
-      .gradient-text {
-        background: linear-gradient(135deg, #59c255 0%, #1e2e55 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .hover-lift {
-        transition:
-          transform 0.3s ease,
-          box-shadow 0.3s ease;
-      }
-
-      .hover-lift:hover {
-        transform: translateY(-5px);
-        box-shadow:
-          0 20px 25px -5px rgba(0, 0, 0, 0.1),
-          0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(59, 130, 246, 0.6);
+            border-radius: 50%;
+            animation: float 8s linear infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        
+        .countdown-timer {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(34, 197, 94, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
     </style>
-  </head>
-  <body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-          <div class="flex items-center space-x-3">
-            <div
-              class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center"
-            >
-              <span class="text-white font-bold text-lg">&lt;/&gt;</span>
+</head>
+<body class="min-h-screen text-white relative overflow-x-hidden">
+    <!-- Animated Particles Background -->
+    <div class="particles">
+        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
+        <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+        <div class="particle" style="left: 70%; animation-delay: 6s;"></div>
+        <div class="particle" style="left: 80%; animation-delay: 7s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: 8s;"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="relative z-20 py-6">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-cube text-blue-400 text-2xl"></i>
+                    <span class="text-2xl font-bold">BlockForge</span>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#features" class="hover:text-blue-400 transition">Features</a>
+                    <a href="#about" class="hover:text-blue-400 transition">About</a>
+                    <a href="#notify" class="hover:text-blue-400 transition">Get Notified</a>
+                </div>
             </div>
-            <span class="text-2xl font-bold gradient-text">KuaZone</span>
-          </div>
-          <div class="hidden md:flex space-x-8">
-            <a
-              href="#courses"
-              class="text-secondary hover:text-primary transition-colors duration-300"
-              >Courses</a
-            >
-            <a
-              href="#about"
-              class="text-secondary hover:text-primary transition-colors duration-300"
-              >About</a
-            >
-            <a
-              href="#testimonials"
-              class="text-secondary hover:text-primary transition-colors duration-300"
-              >Reviews</a
-            >
-            <a
-              href="#contact"
-              class="text-secondary hover:text-primary transition-colors duration-300"
-              >Contact</a
-            >
-          </div>
-          <button
-            class="bg-primary hover:bg-green-600 text-white px-6 py-2 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
-          >
-            Enroll Now
-          </button>
         </div>
-      </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="bg-gradient-to-br from-primary/10 to-secondary/10 py-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h1 class="text-5xl md:text-6xl font-bold mb-6">
-              <span class="gradient-text">Code Your</span><br />
-              <span class="text-secondary">Future Today!</span>
-            </h1>
-            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-              Join thousands of young innovators learning to code with fun,
-              interactive projects. Build games, apps, and websites while
-              developing problem-solving superpowers! 🚀
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <button
-                class="bg-primary hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
-              >
-                Start Free Trial
-              </button>
-              <button
-                class="border-2 border-secondary text-secondary hover:bg-secondary hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300"
-              >
-                Watch Demo
-              </button>
-            </div>
-            <div class="flex items-center mt-8 space-x-8">
-              <div class="text-center">
-                <div class="text-3xl font-bold text-primary">5000+</div>
-                <div class="text-gray-600">Happy Students</div>
-              </div>
-              <div class="text-center">
-                <div class="text-3xl font-bold text-primary">50+</div>
-                <div class="text-gray-600">Expert Teachers</div>
-              </div>
-              <div class="text-center">
-                <div class="text-3xl font-bold text-primary">98%</div>
-                <div class="text-gray-600">Success Rate</div>
-              </div>
-            </div>
-          </div>
-          <div class="relative">
-            <div class="bg-secondary/5 rounded-3xl p-8 backdrop-blur-sm">
-              <div class="bg-white rounded-2xl p-6 shadow-xl hover-lift">
-                <div class="flex items-center justify-between mb-4">
-                  <div class="flex space-x-2">
-                    <div class="w-3 h-3 bg-red-400 rounded-full"></div>
-                    <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                    <div class="w-3 h-3 bg-green-400 rounded-full"></div>
-                  </div>
-                  <span class="text-sm text-gray-500">my-first-game.py</span>
+    <main class="relative z-10">
+        <div class="container mx-auto px-6 py-20">
+            <div class="text-center max-w-4xl mx-auto">
+                <!-- Coming Soon Badge -->
+                <div class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-green-500/20 border border-blue-500/30 mb-8">
+                    <i class="fas fa-rocket text-blue-400 mr-2"></i>
+                    <span class="text-blue-300 font-semibold">Coming Soon</span>
                 </div>
-                <div class="font-mono text-sm space-y-2">
-                  <div class="text-purple-600">
-                    import <span class="text-blue-600">pygame</span>
-                  </div>
-                  <div class="text-gray-600"># Create an awesome game!</div>
-                  <div class="text-green-600">
-                    def <span class="text-blue-600">create_hero</span>():
-                  </div>
-                  <div class="ml-4 text-orange-600">
-                    hero = <span class="text-red-600">"Super Coder"</span>
-                  </div>
-                  <div class="ml-4 text-gray-600">return hero</div>
-                  <div
-                    class="border-l-2 border-primary pl-2 code-animation overflow-hidden whitespace-nowrap"
-                  >
-                    <span class="text-primary">print("Game On! 🎮")</span>
-                  </div>
+
+                <!-- Main Headline -->
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black leading-tight mb-6 floating">
+                    <span class="bg-gradient-to-r from-blue-400 via-purple-400 to-green-400 bg-clip-text text-transparent">
+                        Premium Game
+                    </span><br>
+                    <span class="text-white">Server Hosting</span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
+                    The next generation of game server hosting is almost here. 
+                    <span class="text-green-400 font-bold">Zero lag</span>, 
+                    <span class="text-blue-400 font-bold">instant setup</span>, and 
+                    <span class="text-purple-400 font-bold">unlimited possibilities</span>.
+                </p>
+
+                <!-- Countdown Timer -->
+                <div class="countdown-timer rounded-2xl p-8 mb-12 max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-6 text-blue-300">Launching In</h3>
+                    <div class="grid grid-cols-4 gap-4 text-center">
+                        <div class="bg-gray-800/50 rounded-lg p-4">
+                            <div id="days" class="text-3xl font-bold text-green-400">--</div>
+                            <div class="text-gray-400 text-sm">Days</div>
+                        </div>
+                        <div class="bg-gray-800/50 rounded-lg p-4">
+                            <div id="hours" class="text-3xl font-bold text-blue-400">--</div>
+                            <div class="text-gray-400 text-sm">Hours</div>
+                        </div>
+                        <div class="bg-gray-800/50 rounded-lg p-4">
+                            <div id="minutes" class="text-3xl font-bold text-purple-400">--</div>
+                            <div class="text-gray-400 text-sm">Minutes</div>
+                        </div>
+                        <div class="bg-gray-800/50 rounded-lg p-4">
+                            <div id="seconds" class="text-3xl font-bold text-pink-400">--</div>
+                            <div class="text-gray-400 text-sm">Seconds</div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div
-                class="absolute -top-4 -right-4 w-24 h-24 bg-primary/20 rounded-full animate-pulse-slow"
-              ></div>
-              <div
-                class="absolute -bottom-6 -left-6 w-16 h-16 bg-accent/30 rounded-full animate-bounce-slow"
-              ></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Features Section -->
-    <section id="courses" class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold mb-4">
-            <span class="gradient-text">What Makes Us</span>
-            <span class="text-secondary">Awesome?</span>
-          </h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            We make coding fun, engaging, and accessible for young minds through
-            interactive learning and real projects!
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <div
-            class="bg-gradient-to-br from-primary/5 to-accent/5 p-8 rounded-2xl hover-lift"
-          >
-            <div
-              class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-6 animate-float"
-            >
-              <span class="text-2xl">🎮</span>
-            </div>
-            <h3 class="text-2xl font-bold text-secondary mb-4">
-              Game-Based Learning
-            </h3>
-            <p class="text-gray-600 leading-relaxed">
-              Learn by building actual games! From Pong to platformers, create
-              projects you'll be excited to show your friends.
-            </p>
-          </div>
-
-          <div
-            class="bg-gradient-to-br from-secondary/5 to-primary/5 p-8 rounded-2xl hover-lift"
-          >
-            <div
-              class="w-16 h-16 bg-secondary rounded-2xl flex items-center justify-center mb-6 animate-float"
-              style="animation-delay: 1s"
-            >
-              <span class="text-2xl">👨‍🏫</span>
-            </div>
-            <h3 class="text-2xl font-bold text-secondary mb-4">
-              Expert Mentors
-            </h3>
-            <p class="text-gray-600 leading-relaxed">
-              Learn from industry professionals who know how to make complex
-              concepts simple and fun for young learners.
-            </p>
-          </div>
-
-          <div
-            class="bg-gradient-to-br from-accent/5 to-secondary/5 p-8 rounded-2xl hover-lift"
-          >
-            <div
-              class="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mb-6 animate-float"
-              style="animation-delay: 2s"
-            >
-              <span class="text-2xl">🏆</span>
-            </div>
-            <h3 class="text-2xl font-bold text-secondary mb-4">
-              Achievement System
-            </h3>
-            <p class="text-gray-600 leading-relaxed">
-              Earn badges, unlock new challenges, and track your progress as you
-              master new programming skills and concepts.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Courses Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold mb-4">
-            <span class="text-secondary">Popular</span>
-            <span class="gradient-text">Courses</span>
-          </h2>
-          <p class="text-xl text-gray-600">Choose your coding adventure!</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div
-            class="bg-white rounded-2xl shadow-lg hover-lift overflow-hidden"
-          >
-            <div class="bg-gradient-to-r from-primary to-accent h-2"></div>
-            <div class="p-8">
-              <div class="text-4xl mb-4">🐍</div>
-              <h3 class="text-2xl font-bold text-secondary mb-2">
-                Python for Beginners
-              </h3>
-              <p class="text-gray-600 mb-4">
-                Start your coding journey with Python! Build games, solve
-                puzzles, and create cool projects.
-              </p>
-              <div class="flex items-center justify-between">
-                <span class="text-primary font-bold text-lg">Ages 10-14</span>
-                <span
-                  class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-semibold"
-                  >Beginner</span
-                >
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="bg-white rounded-2xl shadow-lg hover-lift overflow-hidden"
-          >
-            <div class="bg-gradient-to-r from-secondary to-primary h-2"></div>
-            <div class="p-8">
-              <div class="text-4xl mb-4">🌐</div>
-              <h3 class="text-2xl font-bold text-secondary mb-2">
-                Web Development
-              </h3>
-              <p class="text-gray-600 mb-4">
-                Create amazing websites and web apps using HTML, CSS, and
-                JavaScript!
-              </p>
-              <div class="flex items-center justify-between">
-                <span class="text-primary font-bold text-lg">Ages 12-17</span>
-                <span
-                  class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-semibold"
-                  >Intermediate</span
-                >
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="bg-white rounded-2xl shadow-lg hover-lift overflow-hidden"
-          >
-            <div class="bg-gradient-to-r from-accent to-secondary h-2"></div>
-            <div class="p-8">
-              <div class="text-4xl mb-4">📱</div>
-              <h3 class="text-2xl font-bold text-secondary mb-2">
-                Mobile App Development
-              </h3>
-              <p class="text-gray-600 mb-4">
-                Build your own mobile apps and games that you can share with
-                friends and family!
-              </p>
-              <div class="flex items-center justify-between">
-                <span class="text-primary font-bold text-lg">Ages 14-17</span>
-                <span
-                  class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-semibold"
-                  >Advanced</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section id="testimonials" class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold mb-4">
-            <span class="gradient-text">What Students</span>
-            <span class="text-secondary">Say</span>
-          </h2>
-          <p class="text-xl text-gray-600">
-            Real stories from our amazing coding community!
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <div
-            class="bg-gradient-to-br from-primary/5 to-white p-8 rounded-2xl hover-lift"
-          >
-            <div class="flex mb-4">
-              <span class="text-yellow-400 text-xl">⭐⭐⭐⭐⭐</span>
-            </div>
-            <p class="text-gray-600 mb-6 italic">
-              "I built my first game in just 2 weeks! Now I'm creating apps for
-              my friends. KuaZone made coding so much fun!"
-            </p>
-            <div class="flex items-center">
-              <div
-                class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4"
-              >
-                A
-              </div>
-              <div>
-                <div class="font-semibold text-secondary">Alex, 13</div>
-                <div class="text-gray-500 text-sm">Python Course Graduate</div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="bg-gradient-to-br from-secondary/5 to-white p-8 rounded-2xl hover-lift"
-          >
-            <div class="flex mb-4">
-              <span class="text-yellow-400 text-xl">⭐⭐⭐⭐⭐</span>
-            </div>
-            <p class="text-gray-600 mb-6 italic">
-              "The teachers are amazing! They explain everything so clearly and
-              help me whenever I'm stuck. I love the projects we build!"
-            </p>
-            <div class="flex items-center">
-              <div
-                class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-white font-bold mr-4"
-              >
-                M
-              </div>
-              <div>
-                <div class="font-semibold text-secondary">Maya, 15</div>
-                <div class="text-gray-500 text-sm">Web Development Student</div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="bg-gradient-to-br from-accent/5 to-white p-8 rounded-2xl hover-lift"
-          >
-            <div class="flex mb-4">
-              <span class="text-yellow-400 text-xl">⭐⭐⭐⭐⭐</span>
-            </div>
-            <p class="text-gray-600 mb-6 italic">
-              "I never thought I could code, but KuaZone made it so easy! Now
-              I'm building my own mobile app. Can't wait to show everyone!"
-            </p>
-            <div class="flex items-center">
-              <div
-                class="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white font-bold mr-4"
-              >
-                S
-              </div>
-              <div>
-                <div class="font-semibold text-secondary">Sam, 16</div>
-                <div class="text-gray-500 text-sm">
-                  Mobile Development Student
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+                    <button onclick="showNotifyForm()" class="px-10 py-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-black font-bold rounded-xl shadow-lg pulse-glow transition-all duration-300 transform hover:scale-105 flex items-center">
+                        <i class="fas fa-bell mr-3"></i>
+                        Get Notified at Launch
+                    </button>
+                    <button class="px-10 py-4 glass-card hover:bg-white/10 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 flex items-center">
+                        <i class="fas fa-play mr-3"></i>
+                        Watch Preview
+                    </button>
                 </div>
-              </div>
+
+                <!-- Early Access Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-green-400 mb-2">1000+</div>
+                        <div class="text-gray-400">Waitlist Signups</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-blue-400 mb-2">50ms</div>
+                        <div class="text-gray-400">Ultra-Low Latency</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-purple-400 mb-2">99.9%</div>
+                        <div class="text-gray-400">Guaranteed Uptime</div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </main>
+
+    <!-- Features Preview Section -->
+    <section id="features" class="py-20 bg-gradient-to-b from-transparent to-gray-900/50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    What's <span class="text-blue-400">Coming</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                    Revolutionary features that will change how you think about game server hosting
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card glass-card rounded-2xl p-8 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 glow-effect">
+                        <i class="fas fa-bolt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Lightning Setup</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Deploy any game server in under 30 seconds with our AI-powered infrastructure
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card glass-card rounded-2xl p-8 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-6 glow-effect">
+                        <i class="fas fa-gamepad text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Multi-Game Support</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Minecraft, Valheim, Rust, ARK, and 50+ more games with one-click switching
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card glass-card rounded-2xl p-8 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 glow-effect">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Auto-Scaling</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Servers automatically scale based on player count. Pay only for what you use
+                    </p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card glass-card rounded-2xl p-8 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 glow-effect">
+                        <i class="fas fa-magic text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Smart Mods</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        AI-curated mod recommendations and automatic compatibility checking
+                    </p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card glass-card rounded-2xl p-8 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center mb-6 glow-effect">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Community Hub</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Built-in voice chat, forums, and player management tools
+                    </p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card glass-card rounded-2xl p-8 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6 glow-effect">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Real-time Analytics</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Detailed server performance metrics and player behavior insights
+                    </p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-br from-secondary to-primary">
-      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-          Ready to Start Your Coding Journey? 🚀
-        </h2>
-        <p class="text-xl text-white/90 mb-8 leading-relaxed">
-          Join thousands of young coders who are already building the future.
-          Start with a free trial and see why kids love learning with us!
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button
-            class="bg-white text-secondary hover:bg-gray-100 px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
-          >
-            Start Free Trial Today!
-          </button>
-          <button
-            class="border-2 border-white text-white hover:bg-white hover:text-secondary px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300"
-          >
-            Schedule a Demo
-          </button>
+    <!-- Notification Modal -->
+    <div id="notifyModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl p-8 max-w-md w-full transform transition-all">
+            <div class="text-center mb-6">
+                <i class="fas fa-rocket text-5xl text-blue-400 mb-4"></i>
+                <h3 class="text-2xl font-bold mb-2">Get Early Access</h3>
+                <p class="text-gray-400">Be the first to know when we launch!</p>
+            </div>
+            
+            <form class="space-y-4" onsubmit="handleNotifySubmit(event)">
+                <div>
+                    <input type="email" placeholder="Enter your email" required
+                           class="w-full p-4 bg-gray-800/80 border border-gray-600 rounded-xl focus:outline-none focus:border-blue-500 text-white placeholder-gray-400">
+                </div>
+                <div>
+                    <select class="w-full p-4 bg-gray-800/80 border border-gray-600 rounded-xl focus:outline-none focus:border-blue-500 text-white">
+                        <option value="">Favorite Game (Optional)</option>
+                        <option value="minecraft">Minecraft</option>
+                        <option value="valheim">Valheim</option>
+                        <option value="rust">Rust</option>
+                        <option value="ark">ARK: Survival Evolved</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="flex gap-3">
+                    <button type="button" onclick="hideNotifyForm()" 
+                            class="flex-1 py-3 px-6 border border-gray-600 rounded-xl hover:bg-gray-800/50 transition">
+                        Cancel
+                    </button>
+                    <button type="submit" 
+                            class="flex-1 py-3 px-6 bg-gradient-to-r from-green-500 to-green-600 rounded-xl font-bold transition hover:from-green-600 hover:to-green-700">
+                        Notify Me
+                    </button>
+                </div>
+            </form>
         </div>
-        <div class="mt-8 text-white/80">
-          <p>🎁 No credit card required • 7-day free trial • Cancel anytime</p>
-        </div>
-      </div>
-    </section>
+    </div>
 
     <!-- Footer -->
-    <footer id="contact" class="bg-secondary text-white py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid md:grid-cols-4 gap-8">
-          <div>
-            <div class="flex items-center space-x-3 mb-6">
-              <div
-                class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center"
-              >
-                <span class="text-white font-bold text-lg">&lt;/&gt;</span>
-              </div>
-              <span class="text-2xl font-bold">KuaZone</span>
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <i class="fas fa-cube text-blue-400 text-xl"></i>
+                    <span class="text-xl font-bold">BlockForge</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-discord text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                </div>
             </div>
-            <p class="text-white/80 leading-relaxed">
-              Empowering the next generation of innovators through fun,
-              interactive coding education.
-            </p>
-          </div>
-
-          <div>
-            <h4 class="text-lg font-semibold mb-4">Courses</h4>
-            <ul class="space-y-2 text-white/80">
-              <li>
-                <a href="#" class="hover:text-primary transition-colors"
-                  >Python Basics</a
-                >
-              </li>
-              <li>
-                <a href="#" class="hover:text-primary transition-colors"
-                  >Web Development</a
-                >
-              </li>
-              <li>
-                <a href="#" class="hover:text-primary transition-colors"
-                  >Mobile Apps</a
-                >
-              </li>
-              <li>
-                <a href="#" class="hover:text-primary transition-colors"
-                  >Game Development</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 class="text-lg font-semibold mb-4">Support</h4>
-            <ul class="space-y-2 text-white/80">
-              <li>
-                <a href="#" class="hover:text-primary transition-colors"
-                  >Help Center</a
-                >
-              </li>
-              <li>
-                <a href="#" class="hover:text-primary transition-colors"
-                  >Contact Us</a
-                >
-              </li>
-              <li>
-                <a href="#" class="hover:text-primary transition-colors"
-                  >Parent Portal</a
-                >
-              </li>
-              <li>
-                <a href="#" class="hover:text-primary transition-colors"
-                  >Student Portal</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 class="text-lg font-semibold mb-4">Connect</h4>
-            <div class="flex space-x-4">
-              <div
-                class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors cursor-pointer"
-              >
-                <span class="text-sm font-bold">f</span>
-              </div>
-              <div
-                class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors cursor-pointer"
-              >
-                <span class="text-sm font-bold">t</span>
-              </div>
-              <div
-                class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors cursor-pointer"
-              >
-                <span class="text-sm font-bold">in</span>
-              </div>
+            <div class="text-center mt-8 text-gray-400">
+                <p>&copy; 2025 BlockForge. The future of game server hosting.</p>
             </div>
-            <div class="mt-4 p-4 bg-primary/10 rounded-lg">
-              <p class="text-sm font-semibold mb-2">📧 Weekly Coding Tips</p>
-              <div class="flex">
-                <input
-                  type="email"
-                  placeholder="Enter email"
-                  class="flex-1 px-3 py-2 bg-white/10 rounded-l-lg text-sm placeholder-white/60"
-                />
-                <button
-                  class="bg-primary px-4 py-2 rounded-r-lg text-sm font-semibold hover:bg-green-600 transition-colors"
-                >
-                  Join
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
-
-        <div
-          class="border-t border-white/20 mt-12 pt-8 text-center text-white/80"
-        >
-          <p>
-            &copy; 2025 KuaZone Academy. All rights reserved. Made with ❤️ for
-            young coders!
-          </p>
-        </div>
-      </div>
     </footer>
 
     <script>
-      // Add smooth scrolling for navigation links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute("href"));
-          if (target) {
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }
-        });
-      });
-
-      // Add scroll effect to navbar
-      window.addEventListener("scroll", function () {
-        const nav = document.querySelector("nav");
-        if (window.scrollY > 100) {
-          nav.classList.add("shadow-2xl");
-        } else {
-          nav.classList.remove("shadow-2xl");
+        // Countdown Timer
+        function updateCountdown() {
+            // Set launch date (30 days from now as example)
+            const launchDate = new Date();
+            launchDate.setDate(launchDate.getDate() + 30);
+            
+            const now = new Date().getTime();
+            const distance = launchDate.getTime() - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
         }
-      });
+        
+        // Update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Modal functions
+        function showNotifyForm() {
+            document.getElementById('notifyModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function hideNotifyForm() {
+            document.getElementById('notifyModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function handleNotifySubmit(event) {
+            event.preventDefault();
+            // Here you would handle the form submission
+            alert('Thanks for signing up! We\'ll notify you when we launch.');
+            hideNotifyForm();
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('notifyModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideNotifyForm();
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
-  </body>
+</body>
 </html>
