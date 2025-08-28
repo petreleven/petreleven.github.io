@@ -60,6 +60,61 @@
   a[href]:after { content: ""; }
   .card { box-shadow: none !important; border: 1px solid #e5e7eb; -webkit-print-color-adjust: exact; }
 }
+    /* --- PRINT FIXES --- */
+
+/* Force single column flow for printing */
+main {
+  display: block !important;
+  grid-template-columns: none !important;
+}
+
+/* Make cards act as atomic blocks where possible (avoid splitting) */
+.card {
+  display: block !important;
+  width: auto !important;
+  page-break-inside: avoid !important;
+  break-inside: avoid !important;
+  -webkit-column-break-inside: avoid !important;
+  -webkit-page-break-inside: avoid !important;
+  -webkit-region-break-inside: avoid !important;
+  -webkit-print-color-adjust: exact;
+}
+
+/* Prevent headings being orphaned */
+h2, h3 {
+  orphans: 2;
+  widows: 2;
+  page-break-after: avoid;
+  break-after: avoid;
+}
+
+/* Reduce padding & font-size slightly for print so long cards fit more */
+.card {
+  padding: 10px !important;
+  font-size: 12pt !important;
+  line-height: 1.15 !important;
+}
+
+/* Specifically treat the Education card:
+   START it on a new page to avoid it being split between two pages.
+   If you don't want Education to always start on a new page, remove page-break-before.
+*/
+.education-card {
+  page-break-before: always !important;
+  break-before: page !important;
+  -webkit-column-break-before: always !important;
+  -webkit-page-break-before: always !important;
+}
+
+/* If a list or small block is breaking awkwardly */
+.card ul, .card p {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+/* Hide any UI elements not for print (you already do this) */
+.no-print { display: none !important; }
+
 
   </style>
 </head>
@@ -241,5 +296,60 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  <script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // On print, try to reduce the Education card size if it's too tall for a single page viewport.
+  (function(){
+    const edu = document.querySelector('.education-card');
+    if (!edu) return;
+
+    // Save original inline styles to restore later
+    const orig = {
+      fontSize: edu.style.fontSize || '',
+      padding: edu.style.padding || '',
+      transform: edu.style.transform || ''
+    };
+
+    function beforePrint() {
+      try {
+        // Use window.innerHeight as a rough printable page height in the print preview
+        const pageH = window.innerHeight || 1122; // fallback
+        const rect = edu.getBoundingClientRect();
+        // If it's taller than the preview page, shrink it a bit
+        if (rect.height > pageH * 0.98) {
+          edu.style.fontSize = '11px';
+          edu.style.padding = '6px';
+          // if still too tall, scale slightly
+          const newRect = edu.getBoundingClientRect();
+          if (newRect.height > pageH * 0.98) {
+            edu.style.transform = 'scale(0.97)';
+            edu.style.transformOrigin = 'top left';
+          }
+        }
+      } catch (e) {
+        // ignore
+      }
+    }
+
+    function afterPrint() {
+      // Restore
+      edu.style.fontSize = orig.fontSize;
+      edu.style.padding = orig.padding;
+      edu.style.transform = orig.transform;
+    }
+
+    if (window.matchMedia) {
+      const mediaQueryList = window.matchMedia('print');
+      mediaQueryList.addListener(function(mql) {
+        if (mql.matches) beforePrint(); else afterPrint();
+      });
+    }
+
+    window.onbeforeprint = beforePrint;
+    window.onafterprint = afterPrint;
+  })();
+</script>
+
 </body>
 </html>
