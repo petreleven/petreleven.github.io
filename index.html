@@ -10,15 +10,57 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root { --ink:#0f172a; --muted:#475569; --brand:#0ea5e9; }
-    html { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color: var(--ink); }
     @media print {
-      @page { size: A4; margin: 16mm; }
-      body { background: white !important; }
-      .no-print { display: none !important; }
-      a[href]:after { content: ""; } /* hide link URLs */
-      .card { box-shadow: none !important; border: 1px solid #e5e7eb; }
-    }
+  /* page size & margin (you already have these) */
+  @page { size: A4; margin: 16mm; }
+
+  /* Force single-column layout for printing so cards stack vertically */
+  main { 
+    display: block !important; 
+    grid-template-columns: none !important;
+  }
+  /* Make container use the full printable width */
+  .max-w-4xl { max-width: 100% !important; width: auto !important; }
+
+  /* Avoid splitting cards/sections/articles across pages */
+  .card,
+  .card * {
+    -webkit-column-break-inside: avoid;
+    -webkit-page-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Avoid breaking within important blocks */
+  section.card,
+  section.card article,
+  .card .space-y-4,
+  .card ul,
+  .card li {
+    -webkit-column-break-inside: avoid;
+    -webkit-page-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Keep headings with at least 2 lines of following content where possible */
+  h2, h3 {
+    page-break-after: avoid;
+    break-after: avoid;
+    orphans: 2;
+    widows: 2;
+  }
+
+  /* Reduce large paddings/margins that cause extra whitespace in print (optional) */
+  .card { padding: 12px !important; border-width: 1px !important; }
+
+  /* Your other existing print tweaks */
+  body { background: white !important; }
+  .no-print { display: none !important; }
+  a[href]:after { content: ""; }
+  .card { box-shadow: none !important; border: 1px solid #e5e7eb; -webkit-print-color-adjust: exact; }
+}
+
   </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
