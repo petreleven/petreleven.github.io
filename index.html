@@ -1,355 +1,150 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Peter Ndungu – Django Backend Developer</title>
-  <meta name="description" content="Portfolio of Peter Ndungu – Django Backend Developer in Thika, Kenya." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vocational Education and Training - Modules</title>
   <style>
-    @media print {
-  /* page size & margin (you already have these) */
-  @page { size: A4; margin: 16mm; }
-
-  /* Force single-column layout for printing so cards stack vertically */
-  main { 
-    display: block !important; 
-    grid-template-columns: none !important;
-  }
-  /* Make container use the full printable width */
-  .max-w-4xl { max-width: 100% !important; width: auto !important; }
-
-  /* Avoid splitting cards/sections/articles across pages */
-  .card,
-  .card * {
-    -webkit-column-break-inside: avoid;
-    -webkit-page-break-inside: avoid;
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  /* Avoid breaking within important blocks */
-  section.card,
-  section.card article,
-  .card .space-y-4,
-  .card ul,
-  .card li {
-    -webkit-column-break-inside: avoid;
-    -webkit-page-break-inside: avoid;
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  /* Keep headings with at least 2 lines of following content where possible */
-  h2, h3 {
-    page-break-after: avoid;
-    break-after: avoid;
-    orphans: 2;
-    widows: 2;
-  }
-
-  /* Reduce large paddings/margins that cause extra whitespace in print (optional) */
-  .card { padding: 12px !important; border-width: 1px !important; }
-
-  /* Your other existing print tweaks */
-  body { background: white !important; }
-  .no-print { display: none !important; }
-  a[href]:after { content: ""; }
-  .card { box-shadow: none !important; border: 1px solid #e5e7eb; -webkit-print-color-adjust: exact; }
-}
-    /* --- PRINT FIXES --- */
-
-/* Force single column flow for printing */
-main {
-  display: block !important;
-  grid-template-columns: none !important;
-}
-
-/* Make cards act as atomic blocks where possible (avoid splitting) */
-.card {
-  display: block !important;
-  width: auto !important;
-  page-break-inside: avoid !important;
-  break-inside: avoid !important;
-  -webkit-column-break-inside: avoid !important;
-  -webkit-page-break-inside: avoid !important;
-  -webkit-region-break-inside: avoid !important;
-  -webkit-print-color-adjust: exact;
-}
-
-/* Prevent headings being orphaned */
-h2, h3 {
-  orphans: 2;
-  widows: 2;
-  page-break-after: avoid;
-  break-after: avoid;
-}
-
-/* Reduce padding & font-size slightly for print so long cards fit more */
-.card {
-  padding: 10px !important;
-  font-size: 12pt !important;
-  line-height: 1.15 !important;
-}
-
-/* Specifically treat the Education card:
-   START it on a new page to avoid it being split between two pages.
-   If you don't want Education to always start on a new page, remove page-break-before.
-*/
-.education-card {
-  page-break-before: always !important;
-  break-before: page !important;
-  -webkit-column-break-before: always !important;
-  -webkit-page-break-before: always !important;
-}
-
-/* If a list or small block is breaking awkwardly */
-.card ul, .card p {
-  page-break-inside: avoid;
-  break-inside: avoid;
-}
-
-/* Hide any UI elements not for print (you already do this) */
-.no-print { display: none !important; }
-
-
+    :root{--bg:#0e0c0d;--muted:#c46b6b;--accent:#2fa673;--card:#0f1412;--text:#d8f0e6}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial; background:linear-gradient(180deg,#0b0b0b 0%, #0f0f10 100%);color:var(--text);-webkit-font-smoothing:antialiased}
+    .container{max-width:1100px;margin:36px auto;padding:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.02)}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    h1{font-weight:600;margin:0;color:var(--muted);letter-spacing:0.6px}
+    .controls{display:flex;gap:10px}
+    button{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600}
+    button:hover{transform:translateY(-1px)}
+    .subtitle{font-size:13px;color:#9bb19f}
+    table{width:100%;border-collapse:collapse;background:transparent}
+    thead th{border-bottom:1px solid rgba(255,255,255,0.04);padding:18px 12px;text-align:left;color:var(--muted);font-size:13px}
+    tbody td{padding:18px 12px;border-bottom:1px dashed rgba(255,255,255,0.02);vertical-align:top}
+    .module-number{width:12%;color:#ff7b7b;font-weight:700}
+    .time{width:16%;text-align:center;color:#ff7b7b;font-weight:700}
+    .content{white-space:pre-wrap;color:#9fe6b7;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;font-size:14px}
+    @media print{
+      body{background:white;color:black}
+      .container{box-shadow:none;border:none;padding:8px}
+      button,.controls{display:none}
+    }
+    .note{font-size:12px;color:#8aa98a;margin-top:10px}
   </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
-  <div class="max-w-4xl mx-auto p-6">
-    <!-- Toolbar -->
-    <div class="no-print flex items-center justify-end gap-2 mb-4">
-      <button onclick="window.print()" class="px-4 py-2 rounded-xl bg-sky-600 text-white font-medium shadow hover:bg-sky-700 active:scale-[.99]">Download PDF</button>
-    </div>
-
-    <!-- Header -->
-    <header class="card bg-white rounded-2xl shadow p-6 md:p-8 border border-slate-200">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div>
-          <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Peter Ndungu</h1>
-
-          <p class="mt-2 max-w-2xl text-slate-700">Dedicated Engineer with experience in achieving tangible results and cross team collaboration, Proactive and excited to partner with like-minded individuals to achieve goals</p>
-        </div>
-        <ul class="shrink-0 text-sm text-slate-700">
-          <li class="flex items-center gap-2"><span class="font-semibold">Email:</span><a href="mailto:peterndunguofficial@gmail.com" class="text-sky-700 hover:underline">peterndunguofficial@gmail.com</a></li>
-          <li class="flex items-center gap-2"><span class="font-semibold">Phone:</span><a href="tel:+254745434802" class="text-sky-700 hover:underline">+254 745 434 802</a></li>
-          <li class="flex items-center gap-2"><span class="font-semibold">Location:</span><span>Thika, Kenya</span></li>
-          <li class="flex items-center gap-2"><span class="font-semibold">GitHub:</span><a href="https://github.com/petreleven" class="text-sky-700 hover:underline">github.com/petreleven</a></li>
-        </ul>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Vocational Education and Training.</h1>
+        <div class="subtitle">Module overview — key topics, objectives & estimated presentation time</div>
+      </div>
+      <div class="controls">
+        <button onclick="window.print();">Download as PDF / Print</button>
       </div>
     </header>
 
-    <!-- Main Grid -->
-    <main class="mt-6 grid md:grid-cols-3 gap-6">
-      <!-- Left column -->
-      <section class="md:col-span-2 space-y-6">
-        <!-- Experience -->
-        <section class="card bg-white rounded-2xl shadow p-6 border border-slate-200">
-          <h2 class="text-xl font-bold mb-4">Work Experience</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>MODULE NUMBER</th>
+          <th>KEY TOPICS AND OBJECTIVES</th>
+          <th>ESTIMATED PRESENTATION TIME</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="module-number">MODULE 1</td>
+          <td class="content">1) Pedagogical Approaches( the practice of teaching/instructing)
+* key concepts
+  * constructivism
+  * experimental learning
+  * heutagogy
+  * competency based learning
+  * flipped learning
+  * personalised and inclusive learning
 
-          <article class="mb-6">
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <h3 class="font-semibold">IOT  Developer and Programming Tutor  · Kua Zone </h3>
-                <p class="text-sm text-slate-600">12/2023 - current</p>
-              </div>
-            </div>
-            
-              
-            <p class="mt-2 text-slate-800">Implemented a prototype for smart agricultural monitoring using sensors such as temperature and soil moisture sensors.</p>
-             <p class="mt-2 text-slate-800">Participated in code reviews and tutoring to uphold best practices and coding standards.</p>
-             <p class="mt-2 text-slate-800">Developed and maintained RESTful APIs for internal and external applications.</p>
-             <p class="mt-2 text-slate-800">Creating user interfaces for websites and acting as a reviewer for technical issues, e.g., https://baydenevents.com/.</p>
-            
-            
-          </article>
-            <article class="mb-6">
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <h3 class="font-semibold">Backend Developer · Schedulesubs.com</h3>
-                <p class="text-sm text-slate-600">02/2023 - 06/2023</p>
-              </div>
-            </div>
-            <p class="mt-2 text-slate-800">A website for helping creators and marketers automate their social media and track their performance to increase their social outreach.</p>
-            <ul class="mt-3 list-disc list-outside pl-5 space-y-1 text-slate-800">
-              <li>Accelerated application response time by employing caching for frequently accessed user data and background jobs for real-time data updates.</li>
-              <li>Strengthened site performance and security through the integration of Cloudflare caching rules and protection against potential DDoS attacks.</li>
-              <li>Streamlined payment processes by integrating Stripe for recurring payments and renewals for non-paying users on the free plan.</li>
-              <li>Efficiently deployed the entire project on the cloud using Docker for containerization and Nginx as the reverse proxy, alongside other services, simplifying shipping and maintenance.</li>
-            </ul>
-          </article>
+2) Active Learning Strategies
 
-          <article>
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <h3 class="font-semibold">Embedded Developer · Veno Autobitics</h3>
-                <p class="text-sm text-slate-600">09/2022 - 02/2023</p>
-              </div>
-            </div>
-            <ul class="mt-3 list-disc list-outside pl-5 space-y-1 text-slate-800">
-              <li>Optimised interfaces between hardware and software to enhances usability.</li>
-              <li>Wrote maintenance procedures for software to help users and administrators get most from designs.</li>
-              <li>Investigated requests for maintenance and repairs for swifter resolution.</li>
-            </ul>
-          </article>
-        </section>
+3) Integrating tech into Vet teaching
+  * pros and cons
 
-        <!-- Education -->
-        <section class="card bg-white rounded-2xl shadow p-6 border border-slate-200 mt-6">
-          <h2 class="text-xl font-bold mb-4">Education</h2>
-          <div class="space-y-4">
-            <div>
-              <h3 class="font-semibold">Bachelor of Science Electrical and Electronics Engineering</h3>
-              <p class="text-sm text-slate-600">Dedan Kimathi University of Technology · 01/2018 - 04/2023 · Nyeri, Kenya</p>
-              <p class="text-slate-800">Course: Electrical and electronics engineering</p>
-            </div>
-            <div>
-              <h3 class="font-semibold">Kenyan Certificate of Secondary Education</h3>
-              <p class="text-sm text-slate-600">Alliance High School · 01/2014 - 12/2023 · Kikuyu, Kenya</p>
-              <p class="text-slate-800">Courses: K.C.S.E A</p>
-            </div>
-          </div>
-        </section>
+4) Designing flexible Vet CURRICULA
+  * modular
+  * industry collaboration
+  * soft skills paired with technical skills
+  * adaptability</td>
+          <td class="time">30 mins</td>
+        </tr>
 
-        <!-- Certificates -->
-        <section class="card bg-white rounded-2xl shadow p-6 border border-slate-200">
-          <h2 class="text-xl font-bold mb-4">Certificates</h2>
-          <ul class="list-disc list-outside pl-5 space-y-2 text-slate-800">
-            <li>
-              <p class="font-medium">Neural networks</p>
-              <p class="text-sm text-slate-700">Successfully completed a neural networks certification by Deeplearning.ai accredited through Coursera.</p>
-            </li>
-            <li>
-              <p class="font-medium">IBM Tools for Data Science</p>
-              <p class="text-sm text-slate-700">Enrolled and achieved a certificate offered by IBM on tools for data science accredited through Coursera.</p>
-            </li>
-          </ul>
-        </section>
-      </section>
+        <tr>
+          <td class="module-number">MODULE 2</td>
+          <td class="content">1) Digital collaboration tools for VET
+2) Learning Management Systems
+3) Application of simulation/AI/VR in training
+4) Application of Digital assessment tools
+5) Implementing Elearning
+  * asses readiness
+  * add supportive techs i.e LMS</td>
+          <td class="time">20 mins</td>
+        </tr>
 
-      <!-- Right column -->
-      <aside class="space-y-6">
-        <!-- Skills -->
-        <section class="card bg-white rounded-2xl shadow p-6 border border-slate-200">
-          <h2 class="text-xl font-bold mb-4">Skills</h2>
-          <ul class="grid grid-cols-2 gap-x-4 gap-y-2 text-slate-800">
-            <li>Django</li>
-            <li>Embedded C++</li>
-            <li>HTML & CSS</li>
-            <li>Python</li>
-            <li>Docker</li>
-            <li>Unity 3D</li>
-            <li>Blender 3D</li>
-          </ul>
-        </section>
+        <tr>
+          <td class="module-number">MODULE 3</td>
+          <td class="content">1) Challenges faced by VET trainers
+  * student engagement etc
 
-        <!-- Organizations -->
-        <section class="card bg-white rounded-2xl shadow p-6 border border-slate-200">
-          <h2 class="text-xl font-bold mb-4">Organizations</h2>
-          <ul class="space-y-3 text-slate-800">
-            <li>
-              <p class="font-medium">Schedulesubs.com (02/2023 - 06/2023)</p>
-              <p class="text-sm text-slate-700">Backend Developer</p>
-            </li>
-            <li>
-              <p class="font-medium">Veno Autobitics (09/2022 - 02/2023)</p>
-              <p class="text-sm text-slate-700">Embedded Developer</p>
-            </li>
-            <li>
-              <p class="font-medium">Dedan Kimathi University of Technology (01/2022 - 08/2022)</p>
-              <p class="text-sm text-slate-700">Machine Learning Intern</p>
-            </li>
-          </ul>
-        </section>
+2) Managing classroom behaviors
+  * proactive and reactive strategies
 
-        <!-- Languages -->
-        <section class="card bg-white rounded-2xl shadow p-6 border border-slate-200">
-          <h2 class="text-xl font-bold mb-4">Languages</h2>
-          <ul class="space-y-2 text-slate-800">
-            <li><span class="font-medium">English</span> — Full Professional Proficiency</li>
-            <li><span class="font-medium">Kiswahili</span> — Full Professional Proficiency</li>
-          </ul>
-        </section>
+3) Common learning difficulties and management
 
-        <!-- Interests -->
-        <section class="card bg-white rounded-2xl shadow p-6 border border-slate-200">
-          <h2 class="text-xl font-bold mb-4">Interests</h2>
-          <ul class="flex flex-wrap gap-2 text-slate-800">
-            <li class="px-3 py-1 rounded-full bg-slate-100 border">Embedded systems</li>
-            <li class="px-3 py-1 rounded-full bg-slate-100 border">Game Development</li>
-            <li class="px-3 py-1 rounded-full bg-slate-100 border">3D Design</li>
-            <li class="px-3 py-1 rounded-full bg-slate-100 border">Soccer</li>
-          </ul>
-        </section>
-      </aside>
-    </main>
+4) Conflict resolution techniques
+  * Thomas Kilmann (TKI) technique
+  * Interest Based Relational approach
+  * Circle of conflict etc</td>
+          <td class="time">20 mins</td>
+        </tr>
 
-    <!-- Footer -->
-    <footer class="mt-6 text-center text-xs text-slate-500">
-      <p>© <span id="year"></span> Peter Ndungu. All rights reserved.</p>
-    </footer>
+        <tr>
+          <td class="module-number">MODULE 4</td>
+          <td class="content">1) Concepts to gauge quality of VET
+  * industry needs
+  * competence of instructors
+  * flexibility
+  * comprehensive assurance
+
+2) Quality assurance taken by nations
+
+3) Assessing quality in VET</td>
+          <td class="time">20 mins</td>
+        </tr>
+
+        <tr>
+          <td class="module-number">MODULE 5</td>
+          <td class="content">1) Principles of effective VET management
+  * leadership
+  * involvement of people
+  * customer focus
+
+2) Challenges and solutions in VET governance
+
+3) Steps in planning and developing a VET policy
+  * align institutional goals with national/international policies
+
+4) Strategies for effective leadership and decision making</td>
+          <td class="time">20 mins</td>
+        </tr>
+
+        <tr>
+          <td class="module-number">MODULE 6</td>
+          <td class="content">1) Key Drivers/ why we need internationalization in VET
+2) Strategies to drive incorporate internationalization
+3) Integration international standards into VET
+4) Creating international partnerships
+5) Case studies and examples of successful internationalization</td>
+          <td class="time">20 mins</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">Tip: Use the "Download as PDF / Print" button above and choose "Save as PDF" in your browser print dialog.</div>
   </div>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-  <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // On print, try to reduce the Education card size if it's too tall for a single page viewport.
-  (function(){
-    const edu = document.querySelector('.education-card');
-    if (!edu) return;
-
-    // Save original inline styles to restore later
-    const orig = {
-      fontSize: edu.style.fontSize || '',
-      padding: edu.style.padding || '',
-      transform: edu.style.transform || ''
-    };
-
-    function beforePrint() {
-      try {
-        // Use window.innerHeight as a rough printable page height in the print preview
-        const pageH = window.innerHeight || 1122; // fallback
-        const rect = edu.getBoundingClientRect();
-        // If it's taller than the preview page, shrink it a bit
-        if (rect.height > pageH * 0.98) {
-          edu.style.fontSize = '11px';
-          edu.style.padding = '6px';
-          // if still too tall, scale slightly
-          const newRect = edu.getBoundingClientRect();
-          if (newRect.height > pageH * 0.98) {
-            edu.style.transform = 'scale(0.97)';
-            edu.style.transformOrigin = 'top left';
-          }
-        }
-      } catch (e) {
-        // ignore
-      }
-    }
-
-    function afterPrint() {
-      // Restore
-      edu.style.fontSize = orig.fontSize;
-      edu.style.padding = orig.padding;
-      edu.style.transform = orig.transform;
-    }
-
-    if (window.matchMedia) {
-      const mediaQueryList = window.matchMedia('print');
-      mediaQueryList.addListener(function(mql) {
-        if (mql.matches) beforePrint(); else afterPrint();
-      });
-    }
-
-    window.onbeforeprint = beforePrint;
-    window.onafterprint = afterPrint;
-  })();
-</script>
-
 </body>
 </html>
